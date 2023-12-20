@@ -6,18 +6,20 @@ const App = () => {
     { id: 1, title: "Task 1", completed: false },
     { id: 2, title: "Task 2", completed: true },
   ]);
-  const addTask = (title) => {
+  const addTask = (title: string): void => {
     setTasks([...tasks, { id: tasks.length + 1, title, completed: false }]);
   };
-  const editTask = (id, newTitle) => {
-    setTasks(
-      tasks.map((task) =>
-        task.id === id ? { ...task, title: newTitle } : task
-      )
-    );
+  const editTask = (id: number, newTitle: string | null): void => {
+    if (newTitle !== null) {
+      setTasks(
+        tasks.map((task) =>
+          task.id === id ? { ...task, title: newTitle } : task
+        )
+      );
+    }
   };
 
-  const deleteTask = (id) => {
+  const deleteTask = (id: number): void => {
     setTasks(tasks.filter((task) => task.id !== id));
   };
 
