@@ -47,9 +47,15 @@ const App = () => {
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          const title = e.target.elements.title.value;
-          addTask(title);
-          e.target.elements.title.value = "";
+          const formElement = e.target as HTMLFormElement;
+          const titleInput = formElement.querySelector(
+            '[name="title"]'
+          ) as HTMLInputElement;
+          if (titleInput) {
+            const title = titleInput.value;
+            addTask(title);
+            titleInput.value = "";
+          }
         }}
       >
         <input
